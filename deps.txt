@@ -1,0 +1,2 @@
+com.lihaoyi.upickle_3
+com.lihaoyi.os.lib_2.13
