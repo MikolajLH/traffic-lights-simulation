@@ -1,3 +1,5 @@
+# Draft and notes
+
 # Overview
 Simulation is a sequence of states  
 $$
@@ -13,7 +15,11 @@ More about the state, it seems to me that state consists of two components:
 1. Traffic lights - mapping of a type `Route -> Bool` that indicates which route can be taken.
 2. Vehicles - a list of all vehicles currently on the junction.
 
-
+## Commands overview
+1. `AddVehicle` - seems straightforward - just push the `(id, from, to)` to the vehicles list.
+2. `Step` - consists of two parts:
+   1. `UpdateTrafficLights` - the essence of the application, based on the vehicles list and current traffic lights produces new traffic lights -  `(Vehicles, TrafficLights) -> TrafficLights`
+   2. `VehiclesGo` - vehicles move according to the traffic lights, produces a list of vehicles that has just left the junction.
 
 ## TODO:
 - [ ] Design sensible types and types structure.
