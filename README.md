@@ -1,6 +1,6 @@
 # Draft and notes
 
-# Overview
+## Overview
 Simulation is a sequence of states  
 $$
 (S_1, S_2, \ldots, S_n)
