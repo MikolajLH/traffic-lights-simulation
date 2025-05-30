@@ -1,4 +1,4 @@
-package com.dev.simulation
+package com.dev.simulation.commands
 
 import com.dev.simulation.commands.{AddVehicle, Step}
 

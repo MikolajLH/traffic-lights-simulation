@@ -1,7 +1,7 @@
 package com.dev.cli
 
+import com.dev.simulation.commands.Command
 import upickle.default as upickle
-import com.dev.simulation.Command
 
 import scala.util.{Try, Using}
 
