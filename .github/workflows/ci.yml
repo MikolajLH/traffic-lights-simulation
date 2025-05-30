@@ -1,0 +1,25 @@
+# From https://www.scala-sbt.org/1.x/docs/GitHub-Actions-with-sbt.html
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: sbt
+      - name: Setup sbt launcher
+        uses: sbt/setup-sbt@v1
+      - name: Build and Test
+        run: sbt -v +test
