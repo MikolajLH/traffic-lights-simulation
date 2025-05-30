@@ -9,7 +9,8 @@ case class AddVehicle(vehicleId: String, from: Direction, to: Direction) extends
 object AddVehicle:
   def fromMap(data: Map[String, String]): Option[AddVehicle] =
     for
-      vehicleId <- data.get("vehicleId")
+      cmd <- data.get("type").filter(_ == "addVehicle")
+      vehicleId <- data.get("vehicleId").filter(s => !(s.isBlank || s.isEmpty))
       startRoad <- data.get("startRoad")
       endRoad <- data.get("endRoad")
       from <- Direction.fromString(startRoad)
