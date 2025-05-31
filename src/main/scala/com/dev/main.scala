@@ -15,10 +15,10 @@ import com.dev.simulation.junction.{Crossing, Lane, RoadBuilder}
     .flatMap(_.push(Crossing()))
     .flatMap(_.build)
 
-  for
+  val res = for
     commands <- InputFile.parse(inputFilePath)
     road <- roadResult
-  do
-    commands.flatten.foreach( cmd => cmd.introduce())
+  yield
+    commands.flatten.foreach(cmd => cmd.introduce())
 }
 
