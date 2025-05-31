@@ -1,5 +1,5 @@
 package com.dev.simulation.junction
 
 trait RoadElement:
-  def precondition(elems: Seq[RoadElement]): Either[String, Unit]
-  def postcondition(elems: Seq[RoadElement]): Either[String, Unit]
+  def precondition(elements: Seq[RoadElement]): Either[String, Unit] = Right(())
+  def postcondition(elements: Seq[RoadElement]): Either[String, Unit] = Right(())
