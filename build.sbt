@@ -4,6 +4,7 @@ ThisBuild / scalaVersion := "3.7.0"
 
 libraryDependencies += "com.lihaoyi" %% "upickle" % "4.2.1"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19"
+libraryDependencies += "org.creativescala" %% "doodle" % "0.30.0"
 
 lazy val root = (project in file("."))
   .settings(

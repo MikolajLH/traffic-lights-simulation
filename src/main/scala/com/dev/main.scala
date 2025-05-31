@@ -5,7 +5,10 @@ import com.dev.simulation.junction.TrafficDirection.{forward, left}
 import com.dev.simulation.junction.{Crossing, Lane, RoadBuilder}
 
 
+
 @main def main(inputFilePath: String): Unit = {
+
+
   println(inputFilePath)
 
   val roadResult = RoadBuilder()
