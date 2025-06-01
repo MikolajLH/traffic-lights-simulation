@@ -1,4 +1,4 @@
 package com.dev.simulation.junction
 
 enum TrafficDirection:
-  case forward, left, right
+  case forward, left, right, leftArrow, rightArrow
