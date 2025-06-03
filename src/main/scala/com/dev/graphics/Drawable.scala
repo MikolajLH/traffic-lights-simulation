@@ -24,13 +24,13 @@ given Drawable[Set[TrafficLightsDirection]] with
     case TrafficLightsDirection.forward => Primitives.forwardArrow(Color.green)
     case TrafficLightsDirection.left => Primitives.leftArrow(Color.green)
     case TrafficLightsDirection.right => Primitives.rightArrow(Color.green)
-    case TrafficLightsDirection.leftArrow => Primitives.smallLeftArrow(30, Color.green)
-    case TrafficLightsDirection.rightArrow => Primitives.smallRightArrow(30, Color.green)
-  }.reduce(_.on(_)).transform(Transform.rotate(270.degrees))
+    case TrafficLightsDirection.leftArrow => Primitives.smallLeftArrow(70, Color.green)
+    case TrafficLightsDirection.rightArrow => Primitives.smallRightArrow(70, Color.green)
+  }.reduce(_.on(_)).transform(Transform.rotate(270.degrees)).transform(Transform.scale(0.2, 0.2))
 
 given Drawable[Lane] with
   extension (a: Lane) def toImage: Image = {
-    Image.rectangle(200, 48).fillColor(Color.darkGray).strokeColor(Color.darkGray)
+    a.trafficDirections.toImage.at(60, 0).on(Image.rectangle(200, 48).fillColor(Color.darkGray).strokeColor(Color.darkGray))
   }
 
 given Drawable[Crossing] with
@@ -49,7 +49,7 @@ given Drawable[Road] with
         el match {
           case l: Lane =>
             laneCounter = laneCounter + 1
-            val limg = if isCrossing then zebra.at(50,0).on(l.toImage) else l.toImage
+            val limg = if isCrossing then zebra.at(40,0).on(l.toImage) else l.toImage
             if laneCounter > 0
             then List(limg, Image.rectangle(200,2).fillColor(Color.lightGray).strokeColor(Color.lightGray))
             else List(limg)
