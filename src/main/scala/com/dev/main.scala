@@ -9,8 +9,8 @@ import doodle.syntax.all.*
 import doodle.image.*
 import cats.effect.unsafe.implicits.global
 import com.dev.cli.InputFile
-import com.dev.simulation.junction.TrafficLightsDirection.{forward, left, leftArrow}
-import com.dev.simulation.junction.{Crossing, Lane, RoadBuilder}
+import com.dev.simulation.junction.TrafficLightsDirection.{forward, left, leftArrow, right}
+import com.dev.simulation.junction.{Crossing, Junction, Lane, RoadBuilder}
 import com.dev.graphics.{Primitives, given}
 
 
@@ -27,6 +27,12 @@ import com.dev.graphics.{Primitives, given}
     .flatMap(_.push(Crossing()))
     .flatMap(_.build)
 
+  val simpleRoadResult = RoadBuilder()
+    .push(Lane(Set(right)))
+    .flatMap(_.push(Lane(Set(forward))))
+    .flatMap(_.push(Lane(Set(left))))
+    .flatMap(_.build)
+
 
 //  Primitives.rightArrow(Color.black)
 //    .on(Primitives.leftArrow(Color.black))
@@ -39,9 +45,12 @@ import com.dev.graphics.{Primitives, given}
   val res = for
     commands <- InputFile.parse(inputFilePath)
     road <- roadResult
+    sr <- simpleRoadResult
+    junc = Junction(sr, sr, sr, sr)
   yield {
     commands.flatten.foreach(cmd => cmd.introduce())
-    road.toImage.transform(Transform.scale(3,3)).draw()
+    //road.toImage.transform(Transform.scale(3,3)).draw()
+    junc.toImage.transform(Transform.scale(2,2)).draw()
     //Lane(Set()).toImage.draw()
   }
 }

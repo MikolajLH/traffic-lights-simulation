@@ -1,6 +1,6 @@
 package com.dev.graphics
 
-import com.dev.simulation.junction.{Crossing, Lane, Road, RoadElement, TrafficLightsDirection}
+import com.dev.simulation.junction.{Crossing, Junction, Lane, Road, RoadElement, TrafficLightsDirection}
 import doodle.core.*
 import doodle.syntax.all.*
 import doodle.image.*
@@ -59,11 +59,22 @@ given Drawable[Road] with
             List(Image.rectangle(200,2).fillColor(Color.red).strokeColor(Color.black))
         }
       }
-    println(laneCounter)
     parts.flatten.reduce(_.above(_))
     //r.elements.map(_.toImage).reduce(_.above(_))
   }
 
+
+given Drawable[Junction] with
+  extension (j: Junction) def toImage: Image = {
+
+    j.westRoad.toImage.originAt(180, 0)
+      .above(j.southRoad.toImage.transform(Transform.rotate(90.degrees))).at(0, -100)
+      .beside(j.eastRoad.toImage.transform(Transform.rotate(180.degrees))).at(0, 0)
+      .below(j.northRoad.toImage.transform(Transform.rotate(270.degrees)))
+    //j.southRoad.toImage.transform(Transform.rotate(90.degrees))
+    //j.eastRoad.toImage.transform(Transform.rotate(180.degrees))
+    //j.northRoad.toImage.transform(Transform.rotate(270.degrees))
+  }
 
 
 
