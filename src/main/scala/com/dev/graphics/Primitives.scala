@@ -23,11 +23,11 @@ object Primitives:
 
   def forwardArrow(color: Color): Image = Image.path(
         OpenPath.empty
-        .lineTo(0, 150)
-        .lineTo(20, 150)
         .lineTo(0, 170)
-        .lineTo(-20, 150)
-        .lineTo(0, 150))
+        .lineTo(20, 170)
+        .lineTo(0, 190)
+        .lineTo(-20, 170)
+        .lineTo(0, 170))
         .strokeWidth(5)
         .strokeColor(color)
 
