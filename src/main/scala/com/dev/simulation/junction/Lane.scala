@@ -1,3 +1,3 @@
 package com.dev.simulation.junction
 
-case class Lane(to: Set[TrafficLightsDirection]) extends RoadElement
+case class Lane(trafficDirections: Set[TrafficLightsDirection]) extends RoadElement
