@@ -10,5 +10,5 @@ object OutputFile {
   def save(outputFilePath: String, obj: List[List[String]]): Unit =
     val jsonObj = for stepResult <- obj yield Map("leftVehicles" -> (for vehicle <- stepResult yield vehicle))
     val jsonString = upickle.write(OutputFileFormat(jsonObj), 4)
-    os.write(os.pwd/outputFilePath, jsonString)
+    os.write.over(os.pwd/outputFilePath, jsonString)
 }

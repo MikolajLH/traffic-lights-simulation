@@ -1,4 +1,4 @@
-package com.dev.simulation
+package com.dev.simulation.utility
 
 enum Light:
   case red, yellow, green

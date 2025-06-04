@@ -1,4 +1,5 @@
-package com.dev.simulation
+package com.dev.simulation.utility
+
 
 enum Direction:
   case N, E, S, W

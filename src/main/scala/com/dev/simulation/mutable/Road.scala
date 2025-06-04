@@ -1,7 +1,6 @@
 package com.dev.simulation.mutable
 
-import com.dev.simulation.Vehicle
-
+import com.dev.simulation.utility.Vehicle
 import scala.collection.mutable
 import scala.util.Try
 

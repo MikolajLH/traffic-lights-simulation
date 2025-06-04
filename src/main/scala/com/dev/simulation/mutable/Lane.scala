@@ -1,7 +1,6 @@
 package com.dev.simulation.mutable
 
-import com.dev.simulation.Light
-import com.dev.simulation.{TrafficLight, Vehicle}
+import com.dev.simulation.utility.{Light, TrafficLight, Vehicle}
 
 import scala.collection.mutable
 import scala.util.Try

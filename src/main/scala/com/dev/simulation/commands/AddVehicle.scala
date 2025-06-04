@@ -1,7 +1,7 @@
 package com.dev.simulation.commands
 
 import com.dev.simulation.mutable.Simulation
-import com.dev.simulation.{Direction, LaneDirection, Vehicle}
+import com.dev.simulation.utility.{Direction, LaneDirection, Vehicle}
 
 
 case class AddVehicle(vehicleId: String, from: Direction, to: Direction) extends Command:

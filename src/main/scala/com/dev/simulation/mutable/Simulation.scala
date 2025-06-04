@@ -1,6 +1,6 @@
 package com.dev.simulation.mutable
 
-import com.dev.simulation.Direction
+import com.dev.simulation.utility.Direction
 
 class Simulation(var junction: Junction):
   var logs: List[String] = List()

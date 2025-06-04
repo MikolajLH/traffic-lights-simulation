@@ -9,11 +9,11 @@ import doodle.syntax.all.*
 import doodle.image.*
 import cats.effect.unsafe.implicits.global
 import com.dev.cli.{InputFile, OutputFile}
-import com.dev.simulation.Direction.{E, N, S, W}
-import com.dev.simulation.LaneDirection.{forward, left, right}
-import com.dev.simulation.Light.green
-import com.dev.simulation.TrafficLight
+import com.dev.simulation.utility.Direction.{E, N, S, W}
+import com.dev.simulation.utility.LaneDirection.{forward, left, right}
+import com.dev.simulation.utility.Light.green
 import com.dev.simulation.mutable.{Junction, Lane, Road, Simulation}
+import com.dev.simulation.utility.TrafficLight
 
 import scala.collection.immutable.Queue
 import scala.collection.mutable

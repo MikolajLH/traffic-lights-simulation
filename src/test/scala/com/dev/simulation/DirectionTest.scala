@@ -1,5 +1,6 @@
 package com.dev.simulation
 
+import com.dev.simulation.utility.Direction
 import org.scalatest.funsuite.AnyFunSuite
 
 

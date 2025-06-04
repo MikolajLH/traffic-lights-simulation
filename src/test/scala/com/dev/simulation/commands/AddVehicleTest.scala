@@ -1,6 +1,6 @@
 package com.dev.simulation.commands
 
-import com.dev.simulation.Direction.{N, S, W}
+import com.dev.simulation.utility.Direction.{N, S, W}
 import org.scalatest.funsuite.AnyFunSuite
 
 
