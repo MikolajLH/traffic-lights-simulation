@@ -8,7 +8,7 @@ import doodle.core.*
 import doodle.syntax.all.*
 import doodle.image.*
 import cats.effect.unsafe.implicits.global
-import com.dev.cli.InputFile
+import com.dev.cli.{InputFile, OutputFile}
 import com.dev.simulation.Direction.{E, N, S, W}
 import com.dev.simulation.LaneDirection.{forward, left, right}
 import com.dev.simulation.Light.green
@@ -57,5 +57,7 @@ import scala.collection.mutable
     println("XXX")
     sim.logs.foreach(println(_))
     sim.show()
+    
+    OutputFile.save("output.json", sim.left.reverse)
   }
 }
