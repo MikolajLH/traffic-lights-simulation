@@ -7,7 +7,7 @@ import scala.util.Try
 
 case class RoadVehicles(lanes: List[LaneVehicles]):
   def empty: RoadVehicles = RoadVehicles(for lane <- lanes yield lane.empty)
-  
+
   def increment(): RoadVehicles = RoadVehicles(for lane <- lanes yield lane.increment())
 
   def addVehicle(vehicle: Vehicle): Either[String, RoadVehicles] = {

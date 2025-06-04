@@ -6,7 +6,6 @@ case class SimulationState(
                             junction: JunctionVehicles,
                             trafficLights: JunctionTrafficLights,
                             history: List[List[String]]):
-
   def move(): SimulationState = {
     val res = for 
       (roadVs, roadTfs) <- junction.roads().zip(trafficLights.roads()) 
@@ -14,7 +13,6 @@ case class SimulationState(
       val perRoad =
         for
           ((laneVOpt, laneTf), (original, changed)) <- roadVs.peekFirsts.zip(roadTfs.lanes).zip(roadVs.getLanesAndLanesRemoved)
-          //(v, _) <- laneVOpt
         yield {
           if laneVOpt.isEmpty
           then (laneVOpt, original)

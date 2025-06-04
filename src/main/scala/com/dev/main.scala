@@ -70,7 +70,10 @@ import scala.collection.immutable.Queue
     //sr <- simpleRoadResult
     //junc = Junction(sr, sr, sr, sr)
   yield {
-    //commands.flatten.foreach(cmd => cmd.introduce())
+    println("START@@@@@@@@@@\n")
+    println("print commands:")
+    commands.flatten.foreach(cmd => cmd.introduce())
+    println("\n")
     println("Simulation running")
     val finalState = commands.flatten.map {
       case s: Step => Algorithm()
