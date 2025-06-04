@@ -50,6 +50,8 @@ import scala.collection.mutable
     commands <- InputFile.parse(inputFilePath)
   yield {
     val cmds = commands.flatten
+    sim.junction.getAllVertices.foreach(println(_))
+    
     cmds.foreach(_.executeOn(sim))
     sim.show()
     println("XXX")
