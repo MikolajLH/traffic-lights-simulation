@@ -60,7 +60,6 @@ given Drawable[Road] with
         }
       }
     parts.flatten.reduce(_.above(_))
-    //r.elements.map(_.toImage).reduce(_.above(_))
   }
 
 
@@ -71,10 +70,5 @@ given Drawable[Junction] with
       .above(j.southRoad.toImage.transform(Transform.rotate(90.degrees))).at(0, -100)
       .beside(j.eastRoad.toImage.transform(Transform.rotate(180.degrees))).at(0, 0)
       .below(j.northRoad.toImage.transform(Transform.rotate(270.degrees)))
-    //j.southRoad.toImage.transform(Transform.rotate(90.degrees))
-    //j.eastRoad.toImage.transform(Transform.rotate(180.degrees))
-    //j.northRoad.toImage.transform(Transform.rotate(270.degrees))
   }
-
-
 
