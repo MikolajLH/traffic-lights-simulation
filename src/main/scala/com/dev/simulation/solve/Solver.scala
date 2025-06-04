@@ -1,3 +1,6 @@
 package com.dev.simulation.solve
 
-trait Solver
+import com.dev.simulation.mutable.Simulation
+
+trait Solver():
+  def solve(simulation: Simulation): Unit = ()
