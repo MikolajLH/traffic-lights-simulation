@@ -1,7 +1,8 @@
 package com.dev.simulation.commands
 
-import com.dev.simulation.{Direction, Vehicle, LaneDirection}
-import com.dev.simulation.state.{SimulationState, JunctionTrafficLights, JunctionVehicles}
+import com.dev.simulation.solve.Simulation
+import com.dev.simulation.{Direction, LaneDirection, Vehicle}
+import com.dev.simulation.state.{JunctionTrafficLights, JunctionVehicles, SimulationState}
 
 
 case class AddVehicle(vehicleId: String, from: Direction, to: Direction) extends Command:
@@ -13,6 +14,13 @@ case class AddVehicle(vehicleId: String, from: Direction, to: Direction) extends
       updated,
       state.trafficLights,
       state.history)
+  }
+
+  override def executeOn(simulation: Simulation): Unit = {
+    println("AddVehicle()")
+    val vehicle = Vehicle(vehicleId, LaneDirection(from, to))
+    for err <- simulation.junction.addVehicle(from, vehicle).left do simulation.logs = err :: simulation.logs
+    ()
   }
 
 object AddVehicle:

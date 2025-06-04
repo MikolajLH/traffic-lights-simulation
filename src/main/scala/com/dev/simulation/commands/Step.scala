@@ -1,5 +1,6 @@
 package com.dev.simulation.commands
 
+import com.dev.simulation.solve.Simulation
 import com.dev.simulation.state.SimulationState
 
 trait Step extends Command:
@@ -18,6 +19,13 @@ trait Step extends Command:
     println("=================")
     println("")
     res
+  }
+
+  final override def executeOn(simulation: Simulation): Unit = {
+    println("Step()")
+    simulation.show()
+    simulation.progressSimulation()
+    ()
   }
 
 object Step:
