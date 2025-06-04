@@ -12,6 +12,15 @@ import com.dev.cli.InputFile
 import com.dev.simulation.junction.TrafficLightsDirection.{forward, left, leftArrow, right}
 import com.dev.simulation.junction.{Crossing, Junction, Lane, RoadBuilder}
 import com.dev.graphics.{Primitives, given}
+import com.dev.simulation.Direction.N
+import com.dev.simulation.algorithms.Algorithm
+import com.dev.simulation.commands.Step
+import com.dev.simulation.{LaneDirection, Vehicle}
+import com.dev.simulation.state.{JunctionState, RoadState, SimulationState, TrafficLightsState}
+
+import scala.collection.immutable.Queue
+
+
 
 
 @main def main(inputFilePath: String): Unit = {
@@ -33,6 +42,7 @@ import com.dev.graphics.{Primitives, given}
     .flatMap(_.push(Lane(Set(left))))
     .flatMap(_.build)
 
+  val simulationState = SimulationState(JunctionState(), TrafficLightsState(), List())
 
 //  Primitives.rightArrow(Color.black)
 //    .on(Primitives.leftArrow(Color.black))
@@ -49,8 +59,15 @@ import com.dev.graphics.{Primitives, given}
     junc = Junction(sr, sr, sr, sr)
   yield {
     commands.flatten.foreach(cmd => cmd.introduce())
+    println("Simulation running")
+    val finalState = commands.flatten.map {
+      case s: Step => Algorithm()
+      case other => other
+    }.foldLeft(simulationState)((s, c) => c.execute(s))
+    println(finalState)
+    //println(commands.flatten.foldRight(simulationState)(_.execute(_)))
     //road.toImage.transform(Transform.scale(3,3)).draw()
-    junc.toImage.transform(Transform.scale(2,2)).draw()
+    //junc.toImage.transform(Transform.scale(2,2)).draw()
     //Lane(Set()).toImage.draw()
   }
 }
