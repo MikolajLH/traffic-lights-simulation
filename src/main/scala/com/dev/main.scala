@@ -13,7 +13,7 @@ import com.dev.simulation.Direction.{E, N, S, W}
 import com.dev.simulation.LaneDirection.{forward, left, right}
 import com.dev.simulation.Light.green
 import com.dev.simulation.TrafficLight
-import com.dev.simulation.solve.{Junction, Lane, Road, Simulation}
+import com.dev.simulation.mutable.{Junction, Lane, Road, Simulation}
 
 import scala.collection.immutable.Queue
 import scala.collection.mutable
@@ -51,9 +51,11 @@ import scala.collection.mutable
   yield {
     val cmds = commands.flatten
     cmds.foreach(_.executeOn(sim))
-    println(sim.junction.junction)
     sim.show()
+    println("XXX")
     sim.left.foreach(println(_))
+    println("XXX")
     sim.logs.foreach(println(_))
+    sim.show()
   }
 }

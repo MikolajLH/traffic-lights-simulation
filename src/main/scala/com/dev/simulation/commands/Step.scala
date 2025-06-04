@@ -1,31 +1,11 @@
 package com.dev.simulation.commands
 
-import com.dev.simulation.solve.Simulation
-import com.dev.simulation.state.SimulationState
+import com.dev.simulation.mutable.Simulation
 
 trait Step extends Command:
-  def introduce(): Unit = println("Step()")
-  def calculate(state: SimulationState): SimulationState = state
-  final override def execute(state: SimulationState): SimulationState = {
-    println("Before step:")
-    state.junction.roads().foreach(println(_))
-    println("++++++++++++++")
-    state.trafficLights.roads().foreach(println(_))
-    val res = calculate(state).move().increment()
-    println("After step")
-    res.junction.roads().foreach(println(_))
-    println("++++++++++++++")
-    res.trafficLights.roads().foreach(println(_))
-    println("=================")
-    println("")
-    res
-  }
-
-  final override def executeOn(simulation: Simulation): Unit = {
-    println("Step()")
+  override def executeOn(simulation: Simulation): Unit = {
     simulation.show()
-    simulation.progressSimulation()
-    ()
+    simulation.progress()
   }
 
 object Step:

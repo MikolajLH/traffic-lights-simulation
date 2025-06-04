@@ -1,4 +1,4 @@
-package com.dev.simulation.solve
+package com.dev.simulation.mutable
 
 import com.dev.simulation.Direction
 
@@ -6,14 +6,20 @@ class Simulation(var junction: Junction):
   var logs: List[String] = List()
   var left: List[List[String]] = List()
 
-  def progressSimulation(): Simulation = {
+  def progress(): Unit = {
+    // Move the vehicles
     var leftNow: List[Option[String]] = List()
     for ((d, road) <- junction.junction)
       do for lane <- road.lanes
         do leftNow = lane.go() :: leftNow
 
+
+    // Increment their waiting timers
+    for ((d, road) <- junction.junction)
+      do for lane <- road.lanes
+        do lane.incrementWaitingTime()
+    
     left = leftNow.flatten :: left
-    this
   }
 
   def show(): Unit = {
