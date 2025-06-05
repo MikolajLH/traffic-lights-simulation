@@ -21,7 +21,7 @@ class SimulationTest extends AnyFunSuite, TableDrivenPropertyChecks {
 
   def runTest(inputFilePath: String, expectedOutputFilePath: String): Unit = {
 
-    val outPath: os.Path = os.temp.dir() / "testout.json"
+    val outPath: os.Path = os.temp(prefix = "test-output", suffix = ".json")
 
     val (j, cs) = Junctions.x4_LiFiR
     val sim = new Simulation(j, CliquesSolver(cs))
