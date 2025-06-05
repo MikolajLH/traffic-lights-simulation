@@ -31,7 +31,7 @@ class SimulationTest extends AnyFunSuite, TableDrivenPropertyChecks {
     do
       val cmds = commands.flatten
       cmds.foreach(_.executeOn(sim))
-      OutputFile.save(outPath.toString, sim.left.reverse.map(_.toSet))
+      OutputFile.save(outPath, sim.left.reverse.map(_.toSet))
 
     val result = for
       expectedStr <- Using(scala.io.Source.fromFile(expectedOutputFilePath)) { source => source.mkString }.toEither.left.map(_.getMessage)

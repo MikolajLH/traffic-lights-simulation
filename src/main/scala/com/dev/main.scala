@@ -45,7 +45,7 @@ import com.dev.simulation.deprecated as deprecated
 
     //deprecated.Junction(sr, sr, sr, sr).toImage.transform(Transform.scale(2,2)).draw()
 
-    OutputFile.save(outputFilePath, sim.left.reverse.map(_.toSet))
+    OutputFile.save(os.pwd / outputFilePath, sim.left.reverse.map(_.toSet))
     println(s"Saved to $outputFilePath")
   }
 }

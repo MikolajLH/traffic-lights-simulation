@@ -12,7 +12,7 @@ object OutputFile {
     val jsonString = upickle.write(OutputFileFormat(jsonObj), 4)
     jsonString
 
-  def save(outputFilePath: String, obj: List[Set[String]]): Unit =
+  def save(outputFilePath: os.Path, obj: List[Set[String]]): Unit =
     val jsonString = getJsonString(obj)
-    os.write.over(os.pwd/outputFilePath, jsonString)
+    os.write.over(outputFilePath, jsonString)
 }
