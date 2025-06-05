@@ -1,6 +1,6 @@
 
 # Overview
-This program implements traffic simulation and inteligent traffic lights management,
+This program implements traffic simulation and traffic lights management,
 based on the roads load.
 
 # Starting the project
@@ -38,15 +38,23 @@ i.e. `{ {left}, {forward} }` means a lane that has one light for turning left an
 }
 ```
 New vehicle is pushed to the lane on his starting road. The lane must allow for traffic flow, that would lead this vehicle to its `endRoad`.
-If there are many such lanes on the road, the one with minimal total waiting sum is chosen. Total waiting sum is a sum over waiting counters of each vehicle on the lane.
+If there are many such lanes on the road, the one with minimal load is chosen.
+
+## Traffic Lights
+
+Traffic lights work in standard fashion:
+- `green -> yellow`
+- `yellow -> red`
+- `red -> green`
+
+Vehicles can move when the ligh on their lane is either `green` or `yellow`.  
+Additionally the `yellow` light will alway last exactly one simulation step.
 
 ## Simulation Step
 
-1. Calculcate which lights should go forward in their cycle i.e. `green -> yellow`, `yellow -> red`, `red -> green`
-2. Move all vehicles according to traffic rules that is vehicle can move, only if it is first in lane and the light is not red.
+1. Determine traffic lights change.
+2. Move all vehicles according to traffic rules that is vehicle can move, only if it is first in lane and the light is not red. 
 3. Increment waiting counter for these vehicles, that are still at the junction.
-
-### 
 
 ### Determining traffic lights change
 #### Traffic compatibility graph
@@ -112,10 +120,10 @@ This point is directly connected with the lack of automatic creation of the comp
 ## Loading junction configuration from file
 Junction representation in code was designed with possible loading from file in mind. Ulitmately there wasn't enough time to implement this feature.
 
-## Simulation animation
+## Lack of simulation animation
 Innitialy, the program was supposed to have graphics module, that would allow for generating `gif` files or displaynig the simulation animation.  
 In the code base there is a `graphics` package that uses `Doodle` module to draw arbitrary junction, but it's not finished and is uses different representation for Junction that the one used in Simulation.
-In the `main` function there code commented out, that can display the junction as image:
+In the `main` function there code commented out, that can display the junction as image when uncommented:
 ```Scala 3
 //deprecated.Junction(sr, sr, sr, sr).toImage.transform(Transform.scale(2,2)).draw()
 ```
