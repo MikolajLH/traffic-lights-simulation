@@ -13,7 +13,14 @@ class Lane(var trafficPoles: Set[TrafficLight]):
   }
 
   def incrementWaitingTime(): Lane = {
-    vehicles.mapInPlace((v, i) => (v, i + 1))
+    //vehicles.mapInPlace((v, i) => (v, i + 1))
+
+    val res = Try({
+      val (v, i) = vehicles(0)
+      vehicles(0) = (v, i + 1)
+      ()
+    }).toOption
+
     this
   }
 

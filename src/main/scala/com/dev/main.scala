@@ -15,9 +15,11 @@ import com.dev.simulation.deprecated as deprecated
 
 @main def main(inputFilePath: String, outputFilePath: String): Unit = {
   
-  val (j, cs) = Junctions.x4_LiFiR
+  val (j, cs) = Junctions.x4_LFR
   val sim = new Simulation(j, CliquesSolver(cs))
 
+
+  // This part is part of graphics module, that is not finished and not compatible with current simualtion representation
   val simpleRoadResult = deprecated.RoadBuilder()
     .push(deprecated.Crossing())
     .flatMap(_.push(deprecated.Lane(Set(deprecated.TrafficLightsDirection.right))))

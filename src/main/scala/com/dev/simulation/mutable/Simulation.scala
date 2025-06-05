@@ -35,7 +35,7 @@ class Simulation(var junction: Junction,var solver: Solver):
             print(s"  ${lane.trafficPoles}")
             if lane.vehicles.nonEmpty
             then
-              lane.vehicles.reverse.foreach(p => print(s"    [${p._2}] ${p._1.vehicleId} -> ${p._1.direction}|"))
+              lane.vehicles.foreach(p => print(s"    [${p._2}] ${p._1.vehicleId} -> ${p._1.direction}|"))
 
             println("")
           }

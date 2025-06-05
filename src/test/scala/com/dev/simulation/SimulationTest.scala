@@ -4,22 +4,32 @@ import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.{TableDrivenPropertyChecks, TableFor2}
 import com.dev.cli.{InputFile, OutputFile}
 import com.dev.simulation.Junctions
-import com.dev.simulation.mutable.Simulation
-import com.dev.simulation.solve.CliquesSolver
+import com.dev.simulation.mutable.{Simulation, Junction}
+import com.dev.simulation.solve.{CliquesSolver, VertexIndex}
 import upickle.default as upickle
 
 import scala.util.{Try, Using}
 
 
 class SimulationTest extends AnyFunSuite, TableDrivenPropertyChecks {
-  val testCases: TableFor2[String, String] = Table(
+  val x4_LiFiR_testCases: TableFor2[String, String] = Table(
+    ("inputFilePath", "expectedOutputFilePath"),
+    ("./src/test/resources/input.json", "./src/test/resources/output.json"),
+    ("./src/test/resources/input1.json", "./src/test/resources/output1.json")
+  )
+
+  val x4_LFR_testCases: TableFor2[String, String] = Table(
     ("inputFilePath", "expectedOutputFilePath"),
     ("./src/test/resources/input.json", "./src/test/resources/output.json")
   )
 
-  forAll(testCases) { (inputFile, expectedOutputFile) => runTest(inputFile, expectedOutputFile) }
+  forAll(x4_LiFiR_testCases) { (inputFile, expectedOutputFile) => runTestx4_LiFiR(inputFile, expectedOutputFile) }
+  forAll(x4_LFR_testCases) { (inputFile, expectedOutputFile) => runTestx4_LFR(inputFile, expectedOutputFile) }
 
-  def runTest(inputFilePath: String, expectedOutputFilePath: String): Unit = {
+  def runTestx4_LiFiR(input: String, expectedOutput: String): Unit = runTest(input, expectedOutput, Junctions.x4_LiFiR)
+  def runTestx4_LFR(input: String, expectedOutput: String): Unit = runTest(input, expectedOutput, Junctions.x4_LFR)
+
+  def runTest(inputFilePath: String, expectedOutputFilePath: String, junctionType: (Junction, List[Set[VertexIndex]])): Unit = {
 
     val outPath: os.Path = os.temp(prefix = "test-output", suffix = ".json")
 

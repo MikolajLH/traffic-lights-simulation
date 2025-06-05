@@ -3,8 +3,8 @@ package com.dev.simulation.mutable
 import com.dev.simulation.solve.{Vertex, VertexIndex}
 
 import scala.collection.mutable
-import com.dev.simulation.utility.Direction.{E, N, S, W, given }
-import com.dev.simulation.utility.{Direction, Light, Vehicle}
+import com.dev.simulation.utility.Direction.{E, N, S, W }
+import com.dev.simulation.utility.{Direction, Vehicle}
 
 import scala.util.Try
 

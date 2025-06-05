@@ -1,23 +1,29 @@
 package com.dev.simulation
 
-import com.dev.simulation.mutable.{Junction, Road}
-import com.dev.simulation.solve.VertexIndex
-
-import com.dev.simulation.utility.Direction.{E, N, S, W}
 import com.dev.simulation.utility.LaneDirection.{forward, left, right}
-import com.dev.simulation.utility.Light.{green, red, yellow}
-import com.dev.simulation.mutable.{Junction, Lane, Road, Simulation}
-import com.dev.simulation.solve.{CliquesSolver, VertexIndex}
+import com.dev.simulation.utility.Light.red
+import com.dev.simulation.mutable.{Junction, Lane, Road}
+import com.dev.simulation.solve.VertexIndex
 import com.dev.simulation.utility.TrafficLight
 
-import scala.collection.immutable.Queue
-import scala.collection.mutable
 
 import scala.collection.mutable
 
 object Junctions {
-  def x4_LFR(): Unit = ()
-  
+  def x4_LFR: (Junction, List[Set[VertexIndex]]) =
+    val roadN = new Road(mutable.ArrayDeque(new Lane(Set(TrafficLight(Set(left, forward, right), red)))))
+    val roadE = new Road(mutable.ArrayDeque(new Lane(Set(TrafficLight(Set(left, forward, right), red)))))
+    val roadS = new Road(mutable.ArrayDeque(new Lane(Set(TrafficLight(Set(left, forward, right), red)))))
+    val roadW = new Road(mutable.ArrayDeque(new Lane(Set(TrafficLight(Set(left, forward, right), red)))))
+
+    val cliques = List( Set(0, 2), Set(1, 3))
+
+    val junc: Junction = new Junction(roadN, roadE, roadS, roadW)
+    val cs: List[Set[VertexIndex]] = cliques.map(s => s.flatMap(junc.getVertexIndexFromInt))
+
+    (junc, cs)
+
+
   def x4_LiFiR: (Junction, List[Set[VertexIndex]]) = {
     val roadN = new Road(mutable.ArrayDeque(
       new Lane(Set(TrafficLight(Set(left), red))),

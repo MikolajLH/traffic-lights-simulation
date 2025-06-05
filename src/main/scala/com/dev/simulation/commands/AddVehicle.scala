@@ -7,7 +7,7 @@ import com.dev.simulation.utility.{Direction, LaneDirection, Vehicle}
 case class AddVehicle(vehicleId: String, from: Direction, to: Direction) extends Command:
 
   override def executeOn(simulation: Simulation): Unit = {
-    println(s"AddVehicle ${vehicleId}, from ${from}, to ${to}")
+    println(s"AddVehicle $vehicleId, from $from, to $to")
     val vehicle = Vehicle(vehicleId, LaneDirection(from, to))
     for err <- simulation.junction.addVehicle(from, vehicle).left do simulation.logs = err :: simulation.logs
     simulation.show()

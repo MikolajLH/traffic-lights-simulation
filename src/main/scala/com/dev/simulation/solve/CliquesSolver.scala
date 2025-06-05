@@ -12,14 +12,14 @@ case class CliquesSolver(cliques: List[Set[VertexIndex]]) extends Solver:
     val greens = vertices.filter(p => p.light == Light.green).map(p => p.toVertexIndex).toSet
     val waiting = vertices.filter(p => p.light == Light.red).map(p => p.toVertexIndex).toSet
 
-    println(waiting)
-    println(greens)
+    //println(waiting)
+    //println(greens)
     // Find a clique that maximizes a cost function
     // ensures that clique is either a subset of greens or contains are greens
     // because green light always changes into yelow light, and vehicles can move at yellow light,
     val ratedCliques = for clique <- cliques if clique.subsetOf(greens) || greens.subsetOf(clique)
       yield {
-        val weights = clique.flatMap(vi => simulation.junction.getVertex(vi).map(_.cost(5))).sum
+        val weights = clique.flatMap(vi => simulation.junction.getVertex(vi).map(_.cost(3))).sum
         val size = clique.intersect(waiting).size
         (clique, (weights + 1) * (2 * size + 1))
       }
@@ -27,7 +27,7 @@ case class CliquesSolver(cliques: List[Set[VertexIndex]]) extends Solver:
 
     val ps = Try(ratedCliques.maxBy(_._2)).toOption.map(_._1)
     val toBeActive = ps.getOrElse(Set())
-    println(toBeActive)
+    //println(toBeActive)
 
     for v <- vertices
       do {
