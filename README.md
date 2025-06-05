@@ -51,6 +51,11 @@ Vehicles can move when the ligh on their lane is either `green` or `yellow`.
 Additionally the `yellow` light will alway last exactly one simulation step.
 
 ## Simulation Step
+```json
+{
+  "type": "step"
+}
+```
 
 1. Determine traffic lights change.
 2. Move all vehicles according to traffic rules that is vehicle can move, only if it is first in lane and the light is not red. 
@@ -75,7 +80,7 @@ Given list of cliques in the compatibility graph and the junction representation
 4. Iterate over all vertices from step 1. and do
    - if light is green
      - and best clique contains this vertex then skip (stays green)
-     - and best clique doesn't contain this vertex then set it to yellow (vehicles can still move forward on the yellow light)
+     - and best clique doesn't contain this vertex: It is not possible since only cliques that "fully intersect" with the green vertices are allowed.
    - if light is yellow then set it to red
    - if light is red
      - and best clique contains this vertex then set it to green
