@@ -21,4 +21,5 @@ object LaneDirection:
     case (Direction.E, Direction.S) => left
     case (Direction.S, Direction.W) => left
     case (Direction.W, Direction.N) => left
-    
+
+    case _ => forward

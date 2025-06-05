@@ -4,8 +4,9 @@ import com.dev.simulation.mutable.Simulation
 
 trait Step extends Command:
   override def executeOn(simulation: Simulation): Unit = {
-    simulation.show()
+    println("Step()")
     simulation.progress()
+    simulation.show()
   }
 
 object Step:

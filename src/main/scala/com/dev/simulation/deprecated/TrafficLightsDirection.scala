@@ -1,4 +1,4 @@
-package com.dev.simulation.junction
+package com.dev.simulation.deprecated
 
 enum TrafficLightsDirection:
   case forward, left, right, leftArrow, rightArrow

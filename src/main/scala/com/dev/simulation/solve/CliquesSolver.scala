@@ -1,7 +1,7 @@
 package com.dev.simulation.solve
 
 import com.dev.simulation.mutable.Simulation
-import com.dev.simulation.utility.Light.{red, yellow}
+import com.dev.simulation.utility.Light.{green, red, yellow}
 
 case class CliquesSolver(cliques: List[Set[VertexIndex]]) extends Solver:
   override def solve(simulation: Simulation): Unit = {
@@ -14,11 +14,8 @@ case class CliquesSolver(cliques: List[Set[VertexIndex]]) extends Solver:
         (clique, cc)
       }
 
-    //val fs = ratedCliques.flatten
     val ps = ratedCliques.maxBy(_._2)
     val toBeActive = ps._1
-    println("SOLVER:")
-    toBeActive.foreach(println(_))
 
     // If vertex is in the clique it can be turned green/staye green without any worry
     for v <- vertices
@@ -28,5 +25,8 @@ case class CliquesSolver(cliques: List[Set[VertexIndex]]) extends Solver:
         then simulation.junction.setVertex(vi)
         else if toBeActive.contains(vi)
           then if v.light == red then simulation.junction.setVertex(vi)
+        
+        if  v.light == green && !toBeActive.contains(vi)
+          then simulation.junction.setVertex(vi)
       }
   }

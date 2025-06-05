@@ -33,3 +33,4 @@ class Lane(var trafficPoles: Set[TrafficLight]):
 
     res.flatten
   }
+

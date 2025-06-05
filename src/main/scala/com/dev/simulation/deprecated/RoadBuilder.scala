@@ -1,4 +1,4 @@
-package com.dev.simulation.junction
+package com.dev.simulation.deprecated
 
 case class RoadBuilder(incompleteRoad: List[RoadElement]):
   def push(element: RoadElement): Either[String, RoadBuilder] =

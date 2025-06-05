@@ -1,6 +1,6 @@
 package com.dev.graphics
 
-import com.dev.simulation.junction.{Crossing, Junction, Lane, Road, RoadElement, TrafficLightsDirection}
+import com.dev.simulation.deprecated.{Crossing, Junction, Lane, Road, RoadElement, TrafficLightsDirection}
 import doodle.core.*
 import doodle.syntax.all.*
 import doodle.image.*

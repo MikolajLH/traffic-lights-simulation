@@ -1,3 +1,3 @@
-package com.dev.simulation.junction
+package com.dev.simulation.deprecated
 
 case class Lane(trafficDirections: Set[TrafficLightsDirection]) extends RoadElement

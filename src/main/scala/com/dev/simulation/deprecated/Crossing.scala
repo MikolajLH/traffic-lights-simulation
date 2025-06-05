@@ -1,3 +1,3 @@
-package com.dev.simulation.junction
+package com.dev.simulation.deprecated
 
 case class Crossing() extends RoadElement

@@ -43,5 +43,3 @@ object Primitives:
       .strokeColor(color)
   
   def smallLeftArrow(height: Double, color: Color): Image = smallRightArrow(height, color).transform(Transform.horizontalReflection)
-
-  def alternatingRectangles(count: Int, width: Double, height: Double, color1: Color, color2: Color): Image = Image.circle(0)

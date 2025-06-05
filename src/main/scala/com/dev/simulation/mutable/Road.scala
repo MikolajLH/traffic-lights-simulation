@@ -12,3 +12,4 @@ class Road(var lanes: mutable.ArrayDeque[Lane]):
       lanes(i).vehicles.enqueue((vehicle, 0))
       this
     }
+    

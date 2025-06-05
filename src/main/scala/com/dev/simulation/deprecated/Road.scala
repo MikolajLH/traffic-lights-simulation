@@ -1,4 +1,4 @@
-package com.dev.simulation.junction
+package com.dev.simulation.deprecated
 
 case class Road private (elements: List[RoadElement])
 
