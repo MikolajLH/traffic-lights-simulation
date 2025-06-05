@@ -4,7 +4,8 @@ This program implements traffic simulation and inteligent traffic lights managem
 based on the roads load.
 
 # Starting the project
-`sbt run input.json output.json`
+Build and run: `sbt "run input.json output.json"`  
+Run tests: `sbt test`
 
 # Junction representation
 Junction is represented as four roads:
@@ -25,6 +26,7 @@ models a lane on which vehicles can either go forward or turn left.
 Aditionally since lane can have more than one traffic light, it is also possible to model lanes with arrows for turning
 i.e. `{ {left}, {forward} }` means a lane that has one light for turning left and one for going forward, and these lights are independent from each other.
 
+
 ## Adding vehicle
 `addVehicle` command adds a vehcile to the simulation, it has following syntax:
 ```json
@@ -44,15 +46,17 @@ If there are many such lanes on the road, the one with minimal total waiting sum
 2. Move all vehicles according to traffic rules that is vehicle can move, only if it is first in lane and the light is not red.
 3. Increment waiting counter for these vehicles, that are still at the junction.
 
+### 
+
 ### Determining traffic lights change
 #### Traffic compatibility graph
 Traffic compatibility graph is a graph in which each vertex represents a possible traffic flow on the junction
 and there is edge between two vertices if and only if the flow they represent do not collide with each other, that is they can both have green light at the same time.
 
 Below is figure of such graph for a junction with 3 lanes at each road.
-![Traffic compatibility graph](images/g.svg)
+![Traffic compatibility graph](images/g.svg)  
 Since there is a lot of edges on the figure, here is the complement graph so the "traffic incompatiblity graph"
-![Traffic incompatibility graph](images/nng.svg)
+![Traffic incompatibility graph](images/nng.svg)  
 #### Algorithm
 In order to ensure that there won't be any accidents, at any given moment the green light should be on only for lanes that all have edges with each other in the compatibility graph.
 This observation boils down to finding cliques in the graph.  
@@ -77,9 +81,18 @@ There could be a situation when one lane is so overloaded, that a vehicle on som
 To avoid such situations, a waiting threshold can be defined when calculating the clique weights - 
 that means that vertices with vehicles that waited at first place in lane more than threshold, have a weight of infinity.
 
+## Predefined Junctions configurations
 
-# Codebase design and motivations
+There are two predefined junction configuration:
+- `4x_LFR` - four roads, each road has one lane that allows flow `{left, forward, right}`
+- `x4_LiFiR` - four roads, each roads has three lanes `{left}`, `{forward}`, `{right}`
 
+# Tests and CI
+Tests are perforemed using `scalaTest` package. There are:
+- unit tests for `commands` parsing
+- integration tests for the whole program, for both junction configurations
+
+For continues integration, GitHub Actions are used.
 
 # Limitations and possible improvements
 ## Lack of automatic computation of compatibility graph
