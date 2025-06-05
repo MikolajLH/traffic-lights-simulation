@@ -3,19 +3,27 @@ package com.dev.simulation.mutable
 import com.dev.simulation.solve.{Vertex, VertexIndex}
 
 import scala.collection.mutable
-import com.dev.simulation.utility.Direction.{E, N, S, W}
+import com.dev.simulation.utility.Direction.{E, N, S, W, given }
 import com.dev.simulation.utility.{Direction, Light, Vehicle}
 
 import scala.util.Try
 
-class Junction private (var junction: mutable.Map[Direction, Road]):
-  def this(northRoad: Road, eastRoad: Road, southRoad: Road, westRoad: Road) = this(mutable.Map(N -> northRoad, E -> eastRoad, S -> southRoad, W -> westRoad))
+class Junction private (var junction: mutable.LinkedHashMap[Direction, Road]):
+  def this(northRoad: Road, eastRoad: Road, southRoad: Road, westRoad: Road) = this({
+
+    val map = mutable.LinkedHashMap.empty[Direction, Road]
+    map += (N -> northRoad)
+    map += (E -> eastRoad)
+    map += (S -> southRoad)
+    map += (W -> westRoad)
+    map
+  })
 
   def getAllVertices: List[Vertex] = {
     val res = for ((d, road) <- junction)
       yield for (lane, i) <- road.lanes.zipWithIndex
         yield for pole <- lane.trafficPoles
-          yield Vertex(d, i, pole.flow, pole.light, lane.totalLoad(), lane.vehicles.size)
+          yield Vertex(d, i, pole.flow, pole.light, lane.totalLoad(), lane.vehicles.size, lane.firstLoad())
 
     res.flatten.flatten.toList
   }
@@ -34,13 +42,15 @@ class Junction private (var junction: mutable.Map[Direction, Road]):
     val lane = Try(junction(v.atRoad).lanes(v.atLane)).toOption
     val len = lane.map(_.vehicles.length)
     val load = lane.map(_.totalLoad())
+    val firstLoad = lane.map(_.firstLoad())
     val light = lane.flatMap(_.trafficPoles.find(p => p.flow == v.atTrafficPole).map(_.light))
 
     for
       a <- len
       b <- load
       c <- light
-    yield Vertex(v.atRoad, v.atLane, v.atTrafficPole, c, b, a)
+      d <- firstLoad
+    yield Vertex(v.atRoad, v.atLane, v.atTrafficPole, c, b, a ,d)
   }
 
 

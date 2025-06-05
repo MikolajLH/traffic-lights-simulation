@@ -18,6 +18,8 @@ class Lane(var trafficPoles: Set[TrafficLight]):
   }
 
   def totalLoad(): Int = vehicles.foldRight(0)((a, acc) => acc + a._2)
+  
+  def firstLoad(): Int = Try(vehicles.head).toOption.map(p => p._2).getOrElse(0)
 
   def go(): Option[String] = {
     val res = for

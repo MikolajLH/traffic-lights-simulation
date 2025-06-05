@@ -32,10 +32,12 @@ class Simulation(var junction: Junction,var solver: Solver):
         println(s"Road $d")
         for lane <- road.lanes
           do {
+            print(s"  ${lane.trafficPoles}")
             if lane.vehicles.nonEmpty
             then
               lane.vehicles.reverse.foreach(p => print(s"    [${p._2}] ${p._1.vehicleId} -> ${p._1.direction}|"))
-              println("")
+
+            println("")
           }
       }
   }

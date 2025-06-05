@@ -1,9 +1,12 @@
 package com.dev.simulation.utility
 
+import scala.math.Ordering
+
 
 enum Direction:
   case N, E, S, W
 
+given Ordering[Direction] = Ordering.by(_.ordinal)
 
 object Direction:
   def fromString(str: String): Option[Direction] = 

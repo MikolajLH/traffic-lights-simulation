@@ -15,31 +15,32 @@ import scala.collection.mutable
 
 import scala.collection.mutable
 
-object Examples {
+object Junctions {
+  def x4_LFR(): Unit = ()
   
-  def simple12x: (Junction, List[Set[VertexIndex]]) = {
+  def x4_LiFiR: (Junction, List[Set[VertexIndex]]) = {
     val roadN = new Road(mutable.ArrayDeque(
-      Lane(Set(TrafficLight(Set(left), red))),
-      Lane(Set(TrafficLight(Set(forward), red))),
-      Lane(Set(TrafficLight(Set(right), red)))))
+      new Lane(Set(TrafficLight(Set(left), red))),
+      new Lane(Set(TrafficLight(Set(forward), red))),
+      new Lane(Set(TrafficLight(Set(right), red)))))
 
 
     val roadE = new Road(mutable.ArrayDeque(
-      Lane(Set(TrafficLight(Set(left), red))),
-      Lane(Set(TrafficLight(Set(forward), red))),
-      Lane(Set(TrafficLight(Set(right), red)))))
+      new Lane(Set(TrafficLight(Set(left), red))),
+      new Lane(Set(TrafficLight(Set(forward), red))),
+      new Lane(Set(TrafficLight(Set(right), red)))))
 
 
     val roadS = new Road(mutable.ArrayDeque(
-      Lane(Set(TrafficLight(Set(left), red))),
-      Lane(Set(TrafficLight(Set(forward), red))),
-      Lane(Set(TrafficLight(Set(right), red)))))
+      new Lane(Set(TrafficLight(Set(left), red))),
+      new Lane(Set(TrafficLight(Set(forward), red))),
+      new Lane(Set(TrafficLight(Set(right), red)))))
 
 
     val roadW = new Road(mutable.ArrayDeque(
-      Lane(Set(TrafficLight(Set(left), red))),
-      Lane(Set(TrafficLight(Set(forward), red))),
-      Lane(Set(TrafficLight(Set(right), red)))))
+      new Lane(Set(TrafficLight(Set(left), red))),
+      new Lane(Set(TrafficLight(Set(forward), red))),
+      new Lane(Set(TrafficLight(Set(right), red)))))
 
 
     val cliques = List(

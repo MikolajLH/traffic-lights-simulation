@@ -5,10 +5,14 @@ import os as os
 
 
 object OutputFile {
-  private case class OutputFileFormat(stepStatuses: List[Map[String,List[String]]]) derives upickle.ReadWriter
+  case class OutputFileFormat(stepStatuses: List[Map[String,Set[String]]]) derives upickle.ReadWriter
 
-  def save(outputFilePath: String, obj: List[List[String]]): Unit =
+  def getJsonString(obj: List[Set[String]]): String =
     val jsonObj = for stepResult <- obj yield Map("leftVehicles" -> (for vehicle <- stepResult yield vehicle))
     val jsonString = upickle.write(OutputFileFormat(jsonObj), 4)
+    jsonString
+
+  def save(outputFilePath: String, obj: List[Set[String]]): Unit =
+    val jsonString = getJsonString(obj)
     os.write.over(os.pwd/outputFilePath, jsonString)
 }
