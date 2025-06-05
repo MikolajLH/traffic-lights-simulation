@@ -40,8 +40,6 @@ import com.dev.simulation.deprecated as deprecated
       cmd.executeOn(sim)
     }
 
-    //cmds.foreach(_.executeOn(sim))
-    
     println("stepStatuses")
     sim.left.reverse.foreach(println(_))
 
