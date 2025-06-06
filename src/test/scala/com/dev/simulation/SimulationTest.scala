@@ -15,7 +15,8 @@ class SimulationTest extends AnyFunSuite, TableDrivenPropertyChecks {
   val x4_LiFiR_testCases: TableFor2[String, String] = Table(
     ("inputFilePath", "expectedOutputFilePath"),
     ("./src/test/resources/input.json", "./src/test/resources/output.json"),
-    ("./src/test/resources/input1.json", "./src/test/resources/output1.json")
+    ("./src/test/resources/input1.json", "./src/test/resources/output1.json"),
+    ("./src/test/resources/input2.json", "./src/test/resources/output2.json")
   )
 
   val x4_LFR_testCases: TableFor2[String, String] = Table(
